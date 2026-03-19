@@ -11,8 +11,8 @@ public class TileBreaker : MonoBehaviour
         if (destructibleTilemap == null) return;
         
         // Проверяем силу удара
-        if (collision.relativeVelocity.magnitude > breakForce)
-        {
+        // if (collision.relativeVelocity.magnitude > breakForce)
+        // {
             // Получаем точку контакта
             ContactPoint2D contact = collision.contacts[0];
             Vector3 hitPosition = contact.point;
@@ -22,6 +22,6 @@ public class TileBreaker : MonoBehaviour
             
             // Удаляем тайл
             destructibleTilemap.SetTile(cellPosition, null);
-        }
+        //}
     }
 }
