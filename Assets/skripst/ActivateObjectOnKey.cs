@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class ActivateObjectOnKey : MonoBehaviour
+public class ToggleObject : MonoBehaviour
 {
-    public GameObject targetObject; // объект который нужно включить
+    public GameObject targetObject; // объект
     public KeyCode key = KeyCode.E; // кнопка
 
     void Update()
     {
         if (Input.GetKeyDown(key))
         {
-            targetObject.SetActive(true);
+            targetObject.SetActive(!targetObject.activeSelf);
         }
     }
 }
