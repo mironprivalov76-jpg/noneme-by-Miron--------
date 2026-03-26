@@ -13,7 +13,7 @@ public class Upgrade : MonoBehaviour
 
 public class UpgradeShop : MonoBehaviour
 {
-    public BlockInventory playerMoney; // ссылка на скрипт с деньгами
+    public SellBlocks playerMoney; // ссылка на скрипт с деньгами
     public Text moneyText;         // UI Text для денег
     public Upgrade[] upgrades;     // список апгрейдов
 

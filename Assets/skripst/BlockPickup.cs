@@ -6,7 +6,7 @@ public class BlockPickup : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            BlockInventory inventory = collision.GetComponent<BlockInventory>();
+            SellBlocks inventory = collision.GetComponent<SellBlocks>();
             BlockValue block = GetComponent<BlockValue>();
 
             if (inventory != null && block != null)
