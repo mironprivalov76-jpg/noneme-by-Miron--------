@@ -1,18 +1,27 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class BreakableBlock : MonoBehaviour
+public class LomatBlock : MonoBehaviour
 {
-    public string blockType = "stone"; // stone, coal, iron, copper, redstone, gold, emerald, diamond
-    
-    void OnMouseDown() // Или любое другое событие разрушения
+    public int points = 10; 
+     [Range(0f, 1f)]
+    public float spawnChance = 1f; // шанс появления
+    public Text scoreText;
+
+    private static int totalScore = 0;
+
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
-        
-        // Находим MiningCounter на сцене и добавляем блок
-        MiningCounter counter = FindObjectOfType<MiningCounter>();
-        if (counter != null)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            counter.AddBlock(blockType);
+            AddScore(points);
+            Destroy(gameObject);
         }
+    }
+
+    void AddScore(int amount)
+    {
+        totalScore += amount;
+        scoreText.text = "Score: " + totalScore;
     }
 }

@@ -99,7 +99,7 @@ public class PlayerController2D : MonoBehaviour
             if (block.transform.parent != worldParent)
                 continue;
 
-            Block blockScript = block.GetComponent<Block>();
+           Block blockScript = block.GetComponent<Block>();
             if (blockScript == null)
                 continue;
 

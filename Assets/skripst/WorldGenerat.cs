@@ -13,9 +13,6 @@ public class WorldGenerator : MonoBehaviour
     [Header("Blocks")]
     [SerializeField] private GameObject[] blocks;
 
-    [Header("Parent")]
-    [SerializeField] private Transform worldParent;
-
     private void Start()
     {
         GenerateWorld();
@@ -27,17 +24,32 @@ public class WorldGenerator : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                int randomIndex = Random.Range(0, blocks.Length);
+                GameObject block = GetRandomBlock();
 
-                Vector2 pos = new Vector2(
+                Vector2 position = new Vector2(
                     startPosition.x + x * offset,
                     startPosition.y + y * offset
                 );
 
-                GameObject block = Instantiate(blocks[randomIndex], pos, Quaternion.identity);
+                Instantiate(block, position, Quaternion.identity);
+            }
+        }
+    }
 
-                if (worldParent != null)
-                    block.transform.parent = worldParent;
+    GameObject GetRandomBlock()
+    {
+        while (true)
+        {
+            int randomIndex = Random.Range(0, blocks.Length);
+            GameObject candidate = blocks[randomIndex];
+
+           LomatBlock chance = candidate.GetComponent<LomatBlock>();
+
+            float spawnChance = chance != null ? chance.spawnChance : 1f;
+
+            if (Random.value <= spawnChance)
+            {
+                return candidate;
             }
         }
     }
